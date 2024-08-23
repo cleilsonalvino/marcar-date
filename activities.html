@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activities</title>
+    <link rel="stylesheet" href="css/activities.css" />
+  </head>
+  <body>
+    <div id="activityquestion"><b>Para onde iriamos depois?</b></div>
+    <div class="activities-selection">
+      <div class="activity-item">
+        <img src="activities/embora.jpeg" alt="aquarium" />
+        <label
+          ><input
+            type="checkbox"
+            name="activities"
+            value="ir para casa"
+          /> Cada um para sua casa</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/caminhar.jpg" alt="arcade" />
+        <label
+          ><input
+            type="checkbox"
+            name="activities"
+            value="caminhar"
+          />Caminhar pela cidade</label
+        >
+      </div>
+      <div class="activity-item">
+        <img src="activities/park.jpeg" alt="park.jpeg" />
+        <label
+          ><input
+            type="checkbox"
+            name="activities"
+            value="ir para praça"
+          />Ir para uma Praça</label
+        >
+      </div>
+    </div>
+    <button class="button" onclick="storeActivities()">
+      Marcar!
+    </button>
+    <script src="script.js"></script>
+  </body>
+</html>
