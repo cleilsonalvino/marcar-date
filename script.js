@@ -82,7 +82,6 @@ function enviarDadosParaSheetDB() {
     .then(response => response.json())
     .then(result => {
         console.log('Dados enviados com sucesso:', result);
-        alert('Dados enviados com sucesso!');
         // Opcional: Redirecionar ou realizar outras ações
     })
     .catch(error => {
