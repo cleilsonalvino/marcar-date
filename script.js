@@ -72,7 +72,7 @@ function enviarDadosParaSheetDB() {
         ]
     };
 
-    fetch('https://sheetdb.io/api/v1/m449pdmszcagi', {
+    fetch('https://sheetdb.io/api/v1/kizb4bctpajr6', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
