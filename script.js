@@ -1,15 +1,17 @@
-const pegarData = document.getElementById('pegarData')
 
-pegarData.addEventListener('click', ()=>{
+function MarcarData(){
     const data = document.getElementById('data').value;
     if(data == ''){
         alert('escolha uma data')
     } else{
         localStorage.setItem('selectedDate', data);
-        window.location.href = 'food.html'
+        setTimeout(()=>{
+            window.location.href = 'food.html'
+        },1000)
+        
     }
-    
-})
+}
+
 
 
 function storeSelections() {
@@ -29,7 +31,10 @@ function storeSelections() {
  
     // Opcional: armazenar no localStorage para usar em outra página
     localStorage.setItem('selectedFoods', JSON.stringify(selectedFoods));
-    window.location.href = 'activities.html'
+    setTimeout(()=>{
+        window.location.href = 'activities.html'
+    }, 1000)
+    
   }
 
   function storeActivities() {
@@ -51,26 +56,31 @@ function storeSelections() {
     localStorage.setItem('selectedActivities', JSON.stringify(selectedActivities));
 
     // Redireciona para a próxima página
-    window.location.href = 'lastpage.html';
+    
     enviarDadosParaSheetDB();
+
+    setTimeout(()=>{
+        window.location.href = 'lastpage.html';
+    }, 1000)
+    
 }
 
 
 // Função para enviar dados para a planilha via SheetDB
 function enviarDadosParaSheetDB() {
     const date = localStorage.getItem('selectedDate');
-    const foods = JSON.parse(localStorage.getItem('selectedFoods'));
-    const activities = JSON.parse(localStorage.getItem('selectedActivities'));
+let foods = JSON.parse(localStorage.getItem('selectedFoods'));
+let activities = JSON.parse(localStorage.getItem('selectedActivities'));
 
-    const data = {
-        data: [
-            {
-                Date: date,
-                "Food Selections": foods.join(", "),
-                Activities: activities.join(", ")
-            }
-        ]
-    };
+const data = {
+    data: [
+        {
+            Date: date,
+            "Food": Array.isArray(foods) ? foods.join(", ") : "", // Default to empty string if not an array
+            "Activities": Array.isArray(activities) ? activities.join(", ") : "" // Default to empty string if not an array
+        }
+    ]
+};
 
     fetch('https://sheetdb.io/api/v1/kizb4bctpajr6', {
         method: 'POST',
@@ -82,11 +92,9 @@ function enviarDadosParaSheetDB() {
     .then(response => response.json())
     .then(result => {
         console.log('Dados enviados com sucesso:', result);
-        Alert('Dados enviados com sucesso:', result);
-        // Opcional: Redirecionar ou realizar outras ações
     })
     .catch(error => {
         console.error('Erro ao enviar os dados:', error);
-Alert('Erro ao enviar os dados:', error);
+        Alert('Erro ao enviar os dados:', error);
     });
 }
